@@ -4,6 +4,8 @@ However the documentation on how to connect them is still lacking.
 A key point is to implement the RequestHandler interface as described in the official docs; 
 note that you will need to create custom Request and Response objects; using generic ones (e.g. String) would thrown an exception.
 
+This is a seed application.
+
 # Lambda
 
 ## Building
