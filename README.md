@@ -22,19 +22,25 @@ Go to console; and create a new `lambda` function.
 
 * runtime: `Java 8`
 * upload a .ZIP file: `jar` produced by the `sbt assembly`; e.g. `target/scala-2.11/aws-lambda-scala-api-gateway-assembly-1.0.jar `
-* handler: specify a full quantified class name (no need to included the method): e.g.: `org.activeintel.lambda.seed.Handler`
+* handler: specify a full quantified class name (no need to included the method): e.g.: `org.activeintel.lambda.seed.post.Handler` 
+    (for `get` use handler from another corresponding package `...seed.get.Handler`) 
 * role: create `basic execution role` (if you haven't already)
 
 
 After your lambda function has been created; make sure that it run by doing a `test` from AWS console.
 
 
-# API Gateway
+# Integration of Lambda and API Gateway
+
 
 From `API Gateway` console; select your function 
 (note that doing this from `lambda` console `API Endpoints` will result in exception; since some of the permissions don't get set up properly)
 
-To test; pass the following in the `Request Body`:
+
+## POST
+
+For testing, make sure to include corresponding bodies through `API Gateway`, and `Lambda`
+e.g. pass the following in the `Request Body`:
 
 ```
 { 
@@ -42,6 +48,56 @@ To test; pass the following in the `Request Body`:
      "lastName": "Doe" 
 }  
 ```
+
+
+
+
+## GET
+
+When creating resource; you'll need to encode part of the path which is used as argument; e.g. `{messageID}` 
+
+
+You'll also need to add mapping rules to get the argument under `Integration Request`
+
+![alt tag](img/get-config-tab.png)
+
+In the mapping section; select `mapping template` and add e.g.:
+
+```
+{
+    "messageID" : "$input.params('messageID')"
+}
+```
+
+![alt tag](img/mapping-template.png)
+
+
+
+for more information see: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # See Also
 
@@ -51,6 +107,7 @@ http://docs.aws.amazon.com/lambda/latest/dg/java-handler-io-type-pojo.html
 ### Keywords:
 
 java lambda scala aws amazon api gateway rest restful
+
 
 ### Exceptions
 
