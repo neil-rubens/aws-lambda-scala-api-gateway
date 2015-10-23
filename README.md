@@ -86,7 +86,7 @@ NOTE: the documentation is a little confusing; see this post (by Stefano@AWS) fo
 
 Simplest way is to configure through `IAM/Roles/Create Role Policy`
  
-p.s. you can look up the arn of `role` of your lambda in `Lambda / Functions / YOUR-FUNCTION`; ARN is in the top right corner.
+p.s. you can look up the `role` name of your lambda see `Lambda/Functions/YOUR-Function/Configuration/Role` 
 
 
 
