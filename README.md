@@ -82,9 +82,12 @@ You'll probably need to allow cross-domain call; to do that please follow: http:
 NOTE: the documentation is a little confusing; see this post (by Stefano@AWS) for clarifications: https://forums.aws.amazon.com/thread.jspa?messageID=644489&
 
 
+# Give Lambda Permissions to AWS Resources
 
+Simplest way is to configure through `IAM/Roles/Create Role Policy`
  
- 
+p.s. you can look up the arn of `role` of your lambda in `Lambda / Functions / YOUR-FUNCTION`; ARN is in the top right corner.
+
 
 
 
