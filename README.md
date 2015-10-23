@@ -72,8 +72,16 @@ In the mapping section; select `mapping template` and add e.g.:
 ![alt tag](img/mapping-template.png)
 
 
-
 for more information see: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html
+
+
+## Enable CORS for a Method in API Gateway
+
+You'll probably need to allow cross-domain call; to do that please follow: http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html
+
+NOTE: the documentation is a little confusing; see this post (by Stefano@AWS) for clarifications: https://forums.aws.amazon.com/thread.jspa?messageID=644489&
+
+
 
  
  
@@ -110,6 +118,11 @@ java lambda scala aws amazon api gateway rest restful
 
 
 ### Exceptions
+```
+XMLHttpRequest cannot load https://ddd.execute-api.us-east-1.amazonaws.com/test/data. Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://ddd.s3-website-us-east-1.amazonaws.com' is therefore not allowed access. The response had HTTP status code 403.
+
+```
+
 
 ```
 {
