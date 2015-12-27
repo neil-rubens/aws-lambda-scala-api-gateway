@@ -1,6 +1,6 @@
 With a new support for Java; Lambda has become a very good candidate for implementing many of the microservices 
 (and providing a RESTful interface via API Gateway).  
-However the documentation on how to connect them is still lacking. 
+Initiall the documentation on how to connect them was lacking (both docs and functionality has improved recently; e.g. [enabling CORS](http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html) no longer takes 20+ min). 
 A key point is to implement the RequestHandler interface as described in the official docs; 
 note that you will need to create custom Request and Response objects; using generic ones (e.g. String) would thrown an exception.
 
@@ -77,9 +77,15 @@ for more information see: http://docs.aws.amazon.com/apigateway/latest/developer
 
 ## Enable CORS for a Method in API Gateway
 
+
 You'll probably need to allow cross-domain call; to do that please follow: http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html
 
+
+### OLD
+
 NOTE: the documentation is a little confusing; see this post (by Stefano@AWS) for clarifications: https://forums.aws.amazon.com/thread.jspa?messageID=644489&
+
+Nice Folks at AWS have listened; and now there is a button that does all of the steps necessary to enable CORS.
 
 
 # Give Lambda Permissions to AWS Resources
@@ -231,4 +237,13 @@ Sun Oct 04 04:40:30 UTC 2015 : Execution failed due to configuration error: Inva
 }
 
 ```
+
+#### Integration Request Exception
+
+Fix: Make sure to follow [Integration Request instructions](https://github.com/neil-rubens/aws-lambda-scala-api-gateway#get)
+
+```
+The provided key element does not match the schema (Service: AmazonDynamoDBv2; Status Code: 400; Error Code: ValidationException; Request ID: ): com.amazonaws.AmazonServiceException com.amazonaws.AmazonServiceException: The provided key element does not match the schema (Service: AmazonDynamoDBv2; Status Code: 400; Error Code: ValidationException; Request ID: ) at com.amazonaws.http.AmazonHttpClient.handleErrorResponse(AmazonHttpClient.java:1275) at com.amazonaws.http.AmazonHttpClient.executeOneRequest(AmazonHttpClient.java:873) at com.amazonaws.http.AmazonHttpClient.executeHelper(AmazonHttpClient.java:576) at com.amazonaws.http.AmazonHttpClient.doExecute(AmazonHttpClient.java:362) at com.amazonaws.http.AmazonHttpClient.executeWithTimer(AmazonHttpClient.java:328) at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:307) at com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient.invoke(AmazonDynamoDBClient.java:1776) at com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient.getItem(AmazonDynamoDBClient.java:1145) at com.amazonaws.services.dynamodbv2.document.internal.GetItemImpl.doLoadItem(GetItemImpl.java:77) at com.amazonaws.services.dynamodbv2.document.internal.GetItemImpl.getItemOutcome(GetItemImpl.java:40) at com.amazonaws.services.dynamodbv2.document.internal.GetItemImpl.getItemOutcome(GetItemImpl.java:99) at com.amazonaws.services.dynamodbv2.document.internal.GetItemImpl.getItem(GetItemImpl.java:111) at com.amazonaws.services.dynamodbv2.document.Table.getItem(Table.java:610)
+```
+
 
